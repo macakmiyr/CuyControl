@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CuyControl - Monitoreo de Galpón</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🐹 CUYCONTROL</h1>
+    <p>Monitoreo de galpón de cuyes en tiempo real</p>
+
+    <div id="datos">
+      <p class="dato" id="amon">Amoníaco: cargando...</p>
+      <p class="dato" id="temp">Temperatura: cargando...</p>
+      <p class="dato" id="hum">Humedad: cargando...</p>
+      <p class="alerta" id="alerta"></p>
+    </div>
+
+    <button onclick="actualizarDatos()">🔄 Actualizar datos</button>
+    <button onclick="mostrarHistorial()">📈 Ver historial</button>
+    <button onclick="descargarCSV()">⬇ Descargar Excel</button>
+    <p id="hora"></p>
+
+    <h2>Historial</h2>
+
+    <h3>Amoníaco</h3>
+    <iframe src="https://thingspeak.com/channels/2944850/charts/1?api_key=E28KLTSVYXILPXL2&dynamic=true&update=15"></iframe>
+
+    <h3>Temperatura</h3>
+    <iframe src="https://thingspeak.com/channels/2944850/charts/2?api_key=E28KLTSVYXILPXL2&dynamic=true&update=15"></iframe>
+
+    <h3>Humedad</h3>
+    <iframe src="https://thingspeak.com/channels/2944850/charts/3?api_key=E28KLTSVYXILPXL2&dynamic=true&update=15"></iframe>
+  </div>
+
+  <audio id="alarmaSonido" src="sonido.mp3" preload="auto"></audio>
+
+  <div id="modalHistorial" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="cerrar" onclick="cerrarHistorial()">&times;</span>
+      <h3>Historial de Datos</h3>
+      <pre id="tablaHistorial">Cargando historial...</pre>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
